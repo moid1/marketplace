@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEQ,gBAFQ,CACZ,iBAAiB,CACb,EAAE,CAAC;EACC,gBAAgB,EAAE,kBAAkB;EACpC,KAAK,EAAE,kBAAkB;CAC5B",
+    "sources": [
+        "theme-translations.scss"
+    ],
+    "names": [],
+    "file": "theme-translations.css"
+}
