@@ -62,7 +62,7 @@
                         <div class="ps-card__chart">
                             <revenue-chart :data="{{ json_encode([
                                 ['label' => __('Revenue'), 'value' => $data['revenue']['amount'], 'color' => '#80bc00'],
-                                ['label' => __('Fees'), 'value' => $data['revenue']['fee'], 'color' => '#fcb800'],
+                                ['label' => __('Fees'), 'value' => $data['revenue']['fee'], 'color' => '#EB9C57'],
                                 ['label' => __('Withdrawals'), 'value' => $data['revenue']['withdrawal'], 'color' => '#fc6b00']]) }}"></revenue-chart>
                             <div class="ps-card__information">
                                 <i class="icon-wallet"></i>

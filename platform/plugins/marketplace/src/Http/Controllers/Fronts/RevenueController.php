@@ -72,7 +72,7 @@ class RevenueController
         $earningSales = collect([]);
         $period = CarbonPeriod::create($startDate, $endDate);
 
-        $colors = ['#fcb800', '#80bc00'];
+        $colors = ['#EB9C57', '#80bc00'];
 
         foreach ($revenuesGrouped as $key => $revenues) {
             $data = [
