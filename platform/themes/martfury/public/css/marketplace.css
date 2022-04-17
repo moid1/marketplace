@@ -2239,7 +2239,7 @@ textarea.form-control {
   height: 5px;
   background-color: #cecece;
   position: relative;
-  borde-radius: 0;
+  border-radius: 0;
   border: none;
 }
 
@@ -2248,7 +2248,7 @@ textarea.form-control {
   left: 0;
   height: 100%;
   background-color: #EB9C57;
-  borde-radius: 0;
+  border-radius: 0;
   border: none;
 }
 
@@ -2263,7 +2263,7 @@ textarea.form-control {
   border: none;
   box-shadow: 0 0 5px 2px rgba(204, 204, 204, 0.3);
   transform: translateY(-50%);
-  borde-radius: 50%;
+  border-radius: 50%;
 }
 
 .widget_shop-filter .ps-slider__meta {
@@ -3054,7 +3054,7 @@ textarea.form-control {
   background-color: #000;
   z-index: 1000;
   transform: scale(0, 0) rotate(0);
-  border-radisus: 50%;
+  border-radius: 50%;
   transition: all 0.6s cubic-bezier(0.7, 0, 0.3, 1);
   border: none;
 }
