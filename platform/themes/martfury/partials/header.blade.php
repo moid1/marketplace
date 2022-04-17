@@ -13,8 +13,8 @@
 
         <style>
             :root {
-                --color-1st: {{ theme_option('primary_color', '#fcb800') }};
-                --color-2nd: {{ theme_option('secondary_color', '#222222') }};
+                --color-1st: {{ theme_option('primary_color', '#EB9C57') }};
+                --color-2nd: {{ theme_option('secondary_color', '#314686') }};
                 --primary-font: '{{ theme_option('primary_font', 'Work Sans') }}', sans-serif;
                 --button-text-color: {{ theme_option('button_text_color', '#000') }};
                 --header-text-color: {{ theme_option('header_text_color', '#000') }};
