@@ -33,7 +33,7 @@ yarn.lock
 
 public/mix-manifest.json
 
-public/themes
+public/themes/martfury/plugins/
 public/docs
 resources/docs
 
