@@ -177,8 +177,8 @@ table.dataTable {
   color: #ffffff !important;
 }
 .page-content .dataTables_wrapper .dt-buttons .btn:active, .page-content .dataTables_wrapper .dt-buttons .btn:active:focus, .page-content .dataTables_wrapper .dt-buttons .btn:focus, .page-content .dataTables_wrapper .dt-buttons .btn:hover {
-  background: #1dc3d2;
-  border-color: #1dc3d2;
+  background: #314686;
+  border-color: #314686;
 }
 .page-content .dataTables_wrapper .dt-buttons .btn:last-child {
   margin-right: 0;
