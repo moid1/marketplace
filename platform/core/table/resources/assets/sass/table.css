@@ -205,8 +205,8 @@ table.dataTable {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
-  background: #36c6d3;
-  border-color: #36c6d3;
+  background: #EB9C57;
+  border-color: #EB9C57;
   color: #ffffff !important;
 }
 
@@ -273,7 +273,7 @@ table.dataTable {
 }
 
 .page-content .dataTables_wrapper .dataTables_paginate .pagination li.active a {
-  background-color: #36c6d3 !important;
+  background-color: #EB9C57 !important;
   color: #ffffff !important;
 }
 
