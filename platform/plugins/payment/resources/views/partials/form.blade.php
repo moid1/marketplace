@@ -38,6 +38,18 @@
                         </div>
                     </li>
                 @endif
+
+                @if (setting('payment_crypto_status') == 1)
+                <li class="list-group-item">
+                    <input class="magic-radio js_payment_method" type="radio" name="payment_method" id="payment_crypto"
+                           @if (setting('default_payment_method') == \Botble\Payment\Enums\PaymentMethodEnum::CRYPTO) checked @endif
+                           value="Crypto Payment" data-bs-toggle="collapse" data-bs-target=".payment_crypto_wrap" data-parent=".list_payment_method">
+                    <label for="payment_crypto" class="text-start">{{ setting('payment_via_crypto', trans('plugins/payment::payment.payment_via_crypto')) }}</label>
+                    <div class="payment_crypto_transfer_wrap payment_collapse_wrap collapse @if (setting('default_payment_method') == \Botble\Payment\Enums\PaymentMethodEnum::CRYPTO) show @endif" style="padding: 15px 0;">
+                        {!! clean(setting('payment_crypto_description')) !!}
+                    </div>
+                </li>
+                @endif
             </ul>
 
             <br>

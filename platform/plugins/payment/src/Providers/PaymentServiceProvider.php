@@ -117,6 +117,7 @@ class PaymentServiceProvider extends ServiceProvider
                     break;
                 case PaymentMethodEnum::COD:
                 case PaymentMethodEnum::BANK_TRANSFER:
+                case PaymentMethodEnum::CRYPTO:
                 default:
                     break;
             }

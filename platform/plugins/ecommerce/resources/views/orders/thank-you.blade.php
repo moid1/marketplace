@@ -20,7 +20,7 @@
                 </div>
 
                 @include('plugins/ecommerce::orders.thank-you.customer-info', compact('order'))
-
+                
                 <a href="{{ route('public.index') }}" class="btn payment-checkout-btn"> {{ __('Continue shopping') }} </a>
             </div>
             <!---------------------- start right column ------------------>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +28,7 @@
 
     {!! apply_filters('ecommerce_checkout_header', null) !!}
 </head>
+
 <body class="checkout-page" @if (BaseHelper::siteLanguageDirection() == 'rtl') dir="rtl" @endif>
     {!! apply_filters('ecommerce_checkout_body', null) !!}
     <div class="checkout-content-wrap">
@@ -45,11 +47,13 @@
             error_header: '{{ __('Error') }}',
             success_header: '{{ __('Success') }}',
         }
+
+       
     </script>
 
     @if (session()->has('success_msg') || session()->has('error_msg') || isset($errors))
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 @if (session()->has('success_msg'))
                     MainCheckout.showNotice('success', '{{ session('success_msg') }}');
                 @endif
@@ -68,4 +72,5 @@
     {!! apply_filters('ecommerce_checkout_footer', null) !!}
 
 </body>
+
 </html>

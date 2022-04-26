@@ -1,6 +1,6 @@
 <div class="pt-3 mb-4">
     <div class="align-items-center">
-        <h6 class="d-inline-block">{{ __('Order number') }}: {{ get_order_code($order->id) }}</h6>
+        <h6 class="d-inline-block order-code">{{ __('Order number') }}:<span> {{ get_order_code($order->id) }}</span></h6>
     </div>
 
     <div class="checkout-success-products">
