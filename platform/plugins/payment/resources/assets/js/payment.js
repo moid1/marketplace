@@ -1,6 +1,26 @@
 'use strict';
 
 var BPayment = BPayment || {};
+const NOWPAYMENTS = 'https://api-sandbox.nowpayments.io/v1/';
+
+var settings = {
+    "url": "https://api-sandbox.nowpayments.io/v1/",
+    "method": "GET",
+    "timeout": 0,
+    "headers": {
+        "x-api-key": "YGC0MQP-PR54JP2-HEZRDDX-RZWESF5"
+    },
+};
+
+let showLoaderOnPayment = () => {
+    $('.payment-info-loading').show();
+    $('.payment-checkout-btn').prop('disabled', true);
+}
+
+let hideLoaderOnPayment = () => {
+    $('.payment-info-loading').hide();
+    $('.payment-checkout-btn').prop('disabled', false);
+}
 
 BPayment.initResources = function () {
     let paymentMethod = $(document).find('input[name=payment_method]').first();
@@ -53,11 +73,47 @@ BPayment.initResources = function () {
     }
 }
 
+
+function getCryptoCurrencies() {
+    showLoaderOnPayment();
+    settings.url = NOWPAYMENTS + 'currencies';
+    $.ajax(settings).done(function (response) {
+        var options = [];
+        $(response.currencies).each((index, currency) => {
+            options.push(new Option(currency, currency));
+        });
+        $('#crypto_currency').append(options);
+        $('.cryptoCurrencySelector').removeClass('d-none');
+        hideLoaderOnPayment();
+    });
+
+}
+
+function getEstimatedPrice(currencyTo) {
+    showLoaderOnPayment();
+
+    settings.url = NOWPAYMENTS + 'estimate';
+    settings.data = {
+        "amount": 3999.5,
+        "currency_from": "usd",
+        "currency_to": currencyTo,
+    },
+        $.ajax(settings).done(function (response) {
+            const txt = 'You have to pay ';
+            $('.estimated-amount .estimated-amount-description').text(txt + parseFloat(response.estimated_amount).toFixed(2) + ' ' + (response.currency_to).toUpperCase());
+            hideLoaderOnPayment();
+
+        });
+
+}
+
 BPayment.init = function () {
     BPayment.initResources();
 
     $(document).on('change', '.js_payment_method', function () {
         $('.payment_collapse_wrap').removeClass('collapse').removeClass('show').removeClass('active');
+        if ($('input[name=payment_method]:checked').val() === 'crypto')
+            getCryptoCurrencies();
     });
 
     $(document).off('click', '.payment-checkout-btn').on('click', '.payment-checkout-btn', function (event) {
@@ -89,12 +145,21 @@ BPayment.init = function () {
             form.submit();
         }
     });
+
+
 };
+
 
 $(document).ready(function () {
     BPayment.init();
 
     document.addEventListener('payment-form-reloaded', function() {
         BPayment.initResources();
+    });
+
+    $(document).on('change', '#crypto_currency', function () {
+        var convertTo = $(this).find(":selected").text();
+
+        getEstimatedPrice(convertTo);
     });
 });

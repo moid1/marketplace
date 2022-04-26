@@ -11,3 +11,6 @@
 |
 */
 
+use App\Http\Controllers\PaymentController;
+
+Route::post('payment/{payment_id}', [PaymentController::class,'changePaymentStatus']);

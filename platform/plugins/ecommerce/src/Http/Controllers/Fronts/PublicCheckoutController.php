@@ -27,6 +27,7 @@ use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Http\Requests\PayPalPaymentCallbackRequest;
 use Botble\Payment\Services\Gateways\BankTransferPaymentService;
 use Botble\Payment\Services\Gateways\CodPaymentService;
+use Botble\Payment\Services\Gateways\CryptoPaymentService;
 use Botble\Payment\Services\Gateways\PayPalPaymentService;
 use Botble\Payment\Services\Gateways\StripePaymentService;
 use Botble\Payment\Supports\PaymentHelper;
@@ -303,6 +304,7 @@ class PublicCheckoutController
      */
     protected function processOrderData(string $token, array $sessionData, Request $request, bool $finished = false): array
     {
+        // dd('hel');
         if ($request->input('address', [])) {
             if (!isset($sessionData['created_account']) && $request->input('create_account') == 1) {
                 $validator = Validator::make($request->input(), [
@@ -599,6 +601,7 @@ class PublicCheckoutController
         PayPalPaymentService $payPalService,
         StripePaymentService $stripePaymentService,
         CodPaymentService $codPaymentService,
+        CryptoPaymentService $cryptoPaymentService,
         BankTransferPaymentService $bankTransferPaymentService,
         BaseHttpResponse $response,
         HandleShippingFeeService $shippingFeeService,
@@ -855,6 +858,11 @@ class PublicCheckoutController
                 case PaymentMethodEnum::BANK_TRANSFER:
                     $paymentData['charge_id'] = $bankTransferPaymentService->execute($request);
                     break;
+
+                case PaymentMethodEnum::CRYPTO:
+                    $paymentData['charge_id'] = $cryptoPaymentService->execute($request);
+                    break;
+                    
                 default:
                     $paymentData = apply_filters(PAYMENT_FILTER_AFTER_POST_CHECKOUT, $paymentData, $request);
                     break;

@@ -14,6 +14,7 @@ use Botble\Payment\Http\Requests\UpdatePaymentRequest;
 use Botble\Payment\Repositories\Interfaces\PaymentInterface;
 use Botble\Payment\Services\Gateways\BankTransferPaymentService;
 use Botble\Payment\Services\Gateways\CodPaymentService;
+use Botble\Payment\Services\Gateways\CryptoPaymentService;
 use Botble\Payment\Services\Gateways\PayPalPaymentService;
 use Botble\Payment\Services\Gateways\StripePaymentService;
 use Botble\Payment\Tables\PaymentTable;
@@ -50,6 +51,11 @@ class PaymentController extends Controller
      */
     protected $stripePaymentService;
 
+     /**
+     * @var CryptoPaymentService
+     */
+    protected $cryptoPaymentService;
+
     /**
      * @var string
      */
@@ -66,6 +72,7 @@ class PaymentController extends Controller
      * @param StripePaymentService $stripePaymentService
      * @param CodPaymentService $codPaymentService
      * @param BankTransferPaymentService $bankTransferPaymentService
+     * @param CryptoPaymentService $cryptoPaymentService
      * @param PaymentInterface $paymentRepository
      */
     public function __construct(
@@ -73,6 +80,7 @@ class PaymentController extends Controller
         StripePaymentService $stripePaymentService,
         CodPaymentService $codPaymentService,
         BankTransferPaymentService $bankTransferPaymentService,
+        CryptoPaymentService $cryptoPaymentService,
         PaymentInterface $paymentRepository
     ) {
         $this->payPalService = $payPalService;
@@ -83,6 +91,7 @@ class PaymentController extends Controller
         $this->returnUrl = config('plugins.payment.payment.return_url_after_payment');
         $this->codPaymentService = $codPaymentService;
         $this->bankTransferPaymentService = $bankTransferPaymentService;
+        $this->cryptoPaymentService = $cryptoPaymentService;
     }
 
     /**
@@ -201,6 +210,11 @@ class PaymentController extends Controller
                 $chargeId = $this->bankTransferPaymentService->execute($request);
                 return redirect()->to($returnUrl . '?charge_id=' . $chargeId)->with('success_msg',
                     trans('plugins/payment::payment.payment_pending'));
+
+            case PaymentMethodEnum::CRYPTO:
+                $chargeId = $this->cryptoPaymentService->execute($request);
+                return redirect()->to($returnUrl . '?charge_id=' . $chargeId)->with('success_msg',
+                trans('plugins/payment::payment.payment_pending'));
 
             default:
                 $data = apply_filters(PAYMENT_FILTER_AFTER_POST_CHECKOUT, $data, $request);
