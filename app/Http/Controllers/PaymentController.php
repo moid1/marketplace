@@ -12,11 +12,6 @@ class PaymentController extends BaseController
 {
     function changePaymentStatus($request)
     {
-        $payment = Payment::where('id',53)->first();
-        if($payment){
-            $payment->status ='success';
-            $payment->update();
-        }
         $error_msg = "Unknown error";
         $auth_ok = false;
         $request_data = null;
@@ -35,7 +30,11 @@ class PaymentController extends BaseController
 
                 if ($hmac == $recived_hmac) {
                     $auth_ok = true;
-
+                    $payment = Payment::where('id',$request->paymentId)->first();
+                    if($payment){
+                        $payment->status = $request_data['payment_status'];
+                        $payment->update();
+                    }
                 } else {
                     $error_msg = 'HMAC signature does not match';
                 }
