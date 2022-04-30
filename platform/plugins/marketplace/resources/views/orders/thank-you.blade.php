@@ -22,7 +22,9 @@
 
                 @include('plugins/ecommerce::orders.thank-you.customer-info', ['order' => Arr::first($orders)])
 
-                <a href="{{ route('public.index') }}" class="btn payment-checkout-btn"> {{ __('Continue shopping') }} </a>
+                @if ($orders[0]->payment->payment_channel != 'crypto')
+                    <a href="{{ route('public.index') }}" class="btn payment-checkout-btn"> {{ __('Continue shopping') }} </a>
+                @endif
             </div>
             <!---------------------- start right column ------------------>
             <div class="col-lg-5 col-md-6 right">
@@ -83,6 +85,8 @@
                                 <p class="total-text raw-total-text text-end"> {{ format_price($orders->sum('amount')) }} </p>
                             </div>
                         </div>
+
+           
                     </div>
                 @endif
             </div>

@@ -32,13 +32,17 @@
         <span class="order-customer-info-meta" style="text-transform: uppercase">{!! $order->payment->status->toHtml() !!}</span>
     </p>
 
+    @if ($order->payment->payment_channel == 'crypto')
+        <p>
+            <span class="d-inline-block">{{ __('Crypto Total') }}:</span>
+            <span class="order-customer-info-meta" style="text-transform: uppercase">{!! $order->payment->crypto_payment !!}</span>
+        </p>
+    @endif
 
-    <button class="btn make-crypto-invoice"> {{ __('Make Payment') }} </button>
 </div>
 @if ($order->payment->payment_channel == 'crypto')
     <div class="w-100 text-center">
         <button class="btn btn-success make-crypto-invoice"> Make Payment </button>
-        <a href="#" class="d-none" id="invoiceLink">Click here for the payment</a>
     </div>
 @endif
 
@@ -58,16 +62,14 @@
                 "price_amount": order.amount,
                 "price_currency": order.payment.currency,
                 "order_id": $('.order-code').find('span').text().trim(),
-                "ipn_callback_url":window.location.origin + "/api/payment/"+order.payment.id,
-                "success_url": window.location.origin + "/customer/orders/view/"+order.id,
+                "ipn_callback_url": window.location.origin + "/api/payment/" + order.payment.id,
+                "success_url": window.location.origin + "/customer/orders/view/" + order.id,
                 "cancel_url": window.location.origin
             }),
         };
 
         $.ajax(settings).done(function(response) {
-            console.log(response);
-            $('#invoiceLink').removeClass('d-none');
-            $('#invoiceLink').attr('href',response.invoice_url);
+            window.location.href = response.invoice_url;
         });
 
     });

@@ -88,6 +88,7 @@ class PaymentTable extends TableAbstract
             'created_at',
             'status',
             'order_id',
+            'crypto_payment'
         ]);
 
         return $this->applyScopes($query);

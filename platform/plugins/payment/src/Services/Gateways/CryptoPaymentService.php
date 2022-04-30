@@ -29,6 +29,7 @@ class CryptoPaymentService implements ProduceServiceInterface
             'customer_type'   => $request->input('customer_type'),
             'payment_channel' => PaymentMethodEnum::CRYPTO,
             'status'          => PaymentStatusEnum::PENDING,
+            'crypto_payment' => $request->input('crypto_payment')
         ]);
 
         return $chargeId;

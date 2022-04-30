@@ -47,6 +47,11 @@
                     class="order-detail-value"> {{ format_price($order->amount) }} </span>
             </div>
 
+            <div class="col-md-12">
+                <span>{{ __('Crypto Total') }}:</span> <span
+                    class="order-detail-value"> {{ format_price($order->payment->crypto_payment) }} </span>
+            </div>
+
             @if (EcommerceHelper::isTaxEnabled())
                 <div class="col-md-12">
                     <span>{{ __('Tax') }}:</span> <span

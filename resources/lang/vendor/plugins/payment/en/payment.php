@@ -79,7 +79,7 @@ return [
     'payment_methods_instruction' => 'Guide customers to pay directly. You can choose to pay by delivery or bank transfer',
     'payment_method_description' => 'Payment guide - (Displayed on the notice of successful purchase and payment page)',
     'payment_via_cod' => 'Cash on delivery (COD)',
-    'payment_via_crypto' => 'Crypto Payment',
+    'payment_via_crypto' => 'Pay With Cryptocurrency',
     'payment_pending' => 'Checkout successfully. Your payment is pending and will be checked by our staff.',
     'created_at' => 'Created At',
     'payment_channel' => 'Payment Channel',

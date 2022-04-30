@@ -48,7 +48,6 @@
             success_header: '{{ __('Success') }}',
         }
 
-       
     </script>
 
     @if (session()->has('success_msg') || session()->has('error_msg') || isset($errors))

@@ -32,3 +32,12 @@
         <p class="total-text raw-total-text"> {{ format_price($order->amount) }} </p>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-6">
+        <p>{{ __('Crypto Total') }}:</p>
+    </div>
+    <div class="col-6 float-end">
+        <p class="total-text raw-total-text"> {{ ($order->payment->crypto_payment) }} </p>
+    </div>
+</div>

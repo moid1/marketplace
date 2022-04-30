@@ -76,31 +76,32 @@ BPayment.initResources = function () {
 
 function getCryptoCurrencies() {
     showLoaderOnPayment();
-    settings.url = NOWPAYMENTS + 'currencies';
+    settings.url = NOWPAYMENTS + 'merchant/coins';
+    document.getElementById("crypto_currency").options.length = 0;
     $.ajax(settings).done(function (response) {
         var options = [];
-        $(response.currencies).each((index, currency) => {
-            options.push(new Option(currency, currency));
+        $(response.selectedCurrencies).each((index, currency) => {
+            if (currency == "BTC" || currency == "ETH")
+                options.push(new Option(currency.toUpperCase(), currency));
         });
         $('#crypto_currency').append(options);
         $('.cryptoCurrencySelector').removeClass('d-none');
-        hideLoaderOnPayment();
+        getEstimatedPrice("ETH");
     });
 
 }
 
 function getEstimatedPrice(currencyTo) {
     showLoaderOnPayment();
-
     settings.url = NOWPAYMENTS + 'estimate';
     settings.data = {
-        "amount": 3999.5,
-        "currency_from": "usd",
         "currency_to": currencyTo,
+        "amount": $('input[name=amount]').val(),
+        "currency_from": $('input[name=currency]').val(),
     },
         $.ajax(settings).done(function (response) {
-            const txt = 'You have to pay ';
-            $('.estimated-amount .estimated-amount-description').text(txt + parseFloat(response.estimated_amount).toFixed(2) + ' ' + (response.currency_to).toUpperCase());
+            const txt = 'Total Due ';
+            $('.estimated-amount .estimated-amount-description').text(txt + parseFloat(response.estimated_amount) + ' ' + (response.currency_to).toUpperCase());
             hideLoaderOnPayment();
 
         });
@@ -112,8 +113,13 @@ BPayment.init = function () {
 
     $(document).on('change', '.js_payment_method', function () {
         $('.payment_collapse_wrap').removeClass('collapse').removeClass('show').removeClass('active');
-        if ($('input[name=payment_method]:checked').val() === 'crypto')
+        if ($('input[name=payment_method]:checked').val() === 'crypto') {
+            $('.payment-checkout-btn').text('Proceed To Crypto Checkout');
             getCryptoCurrencies();
+        }else{
+            $('.payment-checkout-btn').text('Checkout');
+
+        }
     });
 
     $(document).off('click', '.payment-checkout-btn').on('click', '.payment-checkout-btn', function (event) {
@@ -153,13 +159,12 @@ BPayment.init = function () {
 $(document).ready(function () {
     BPayment.init();
 
-    document.addEventListener('payment-form-reloaded', function() {
+    document.addEventListener('payment-form-reloaded', function () {
         BPayment.initResources();
     });
 
     $(document).on('change', '#crypto_currency', function () {
         var convertTo = $(this).find(":selected").text();
-
         getEstimatedPrice(convertTo);
     });
 });
