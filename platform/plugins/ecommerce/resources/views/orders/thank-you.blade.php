@@ -20,8 +20,9 @@
                 </div>
 
                 @include('plugins/ecommerce::orders.thank-you.customer-info', compact('order'))
-                
-                <a href="{{ route('public.index') }}" class="btn payment-checkout-btn"> {{ __('Continue shopping') }} </a>
+                @if ($order->payment->payment_channel != 'crypto')
+                    <a href="{{ route('public.index') }}" class="btn payment-checkout-btn"> {{ __('Continue shopping') }} </a>
+                @endif
             </div>
             <!---------------------- start right column ------------------>
             <div class="col-lg-5 col-md-6 d-none d-md-block right">

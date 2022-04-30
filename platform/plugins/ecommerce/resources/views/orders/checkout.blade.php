@@ -10,7 +10,7 @@
 
         {!! Form::open(['route' => ['public.checkout.process', $token], 'class' => 'checkout-form payment-checkout-form', 'id' => 'checkout-form']) !!}
         <input type="hidden" name="checkout-token" id="checkout-token" value="{{ $token }}">
-
+        <input type="hidden" name="crypto_payment">
         <div class="container" id="main-checkout-product-info">
             <div class="row">
                 <div class="order-1 order-md-2 col-lg-5 col-md-6 right">
@@ -96,6 +96,16 @@
                                 <div class="col-6 float-end">
                                     <p class="total-text raw-total-text"
                                        data-price="{{ format_price(Cart::instance('cart')->rawTotal(), null, true) }}"> {{ ($promotionDiscountAmount + $couponDiscountAmount - $shippingAmount) > Cart::instance('cart')->rawTotal() ? format_price(0) : format_price(Cart::instance('cart')->rawTotal() - $promotionDiscountAmount - $couponDiscountAmount + $shippingAmount) }} </p>
+                                </div>
+                            </div>
+
+                            <div class="row crypto-payment-row d-none">
+                                <div class="col-6">
+                                    <p><strong>{{ __('Crypto Total') }}</strong>:</p>
+                                </div>
+                                <div class="col-6 float-end">
+                                    <p id="total-crypto-text" data-crypto-price=0 class="total-text raw-total-text  raw-total-crypto">
+                                    </p>
                                 </div>
                             </div>
                         </div>

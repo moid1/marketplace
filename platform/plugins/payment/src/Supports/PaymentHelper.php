@@ -41,7 +41,6 @@ class PaymentHelper
         $paymentChannel = Arr::get($data, 'payment_channel', PaymentMethodEnum::COD);
 
         $orderIds = (array) $data['order_id'];
-
         return app(PaymentInterface::class)->create([
             'account_id'      => Arr::get($data, 'account_id'),
             'amount'          => $data['amount'],
@@ -52,6 +51,7 @@ class PaymentHelper
             'customer_type'   => Arr::get($data, 'customer_type'),
             'payment_channel' => $paymentChannel,
             'status'          => Arr::get($data, 'status', PaymentStatusEnum::PENDING),
+            'crypto_payment' => $data['crypto_payment']
         ]);
     }
 }
