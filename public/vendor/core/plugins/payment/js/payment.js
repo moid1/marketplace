@@ -1,1 +1,176 @@
-(()=>{"use strict";var e=e||{},t="https://api-sandbox.nowpayments.io/v1/",n={url:"https://api-sandbox.nowpayments.io/v1/",method:"GET",timeout:0,headers:{"x-api-key":"YGC0MQP-PR54JP2-HEZRDDX-RZWESF5"}},a=function(){$(".payment-info-loading").show(),$(".payment-checkout-btn").prop("disabled",!0)};function r(e){a(),n.url=t+"estimate",n.data={currency_to:e,amount:$("input[name=amount]").val(),currency_from:$("input[name=currency]").val()},$.ajax(n).done((function(e){$(".estimated-amount .estimated-amount-description").text("Total Due "+parseFloat(e.estimated_amount)+" "+e.currency_to.toUpperCase()),$(".payment-info-loading").hide(),$(".payment-checkout-btn").prop("disabled",!1)}))}e.initResources=function(){var e=$(document).find("input[name=payment_method]").first();e.length&&(e.trigger("click").trigger("change"),e.closest(".list-group-item").find(".payment_collapse_wrap").addClass("show")),$(".stripe-card-wrapper").length>0&&new Card({form:".payment-checkout-form",container:".stripe-card-wrapper",formSelectors:{numberInput:"input#stripe-number",expiryInput:"input#stripe-exp",cvcInput:"input#stripe-cvc",nameInput:"input#stripe-name"},width:350,formatting:!0,messages:{validDate:"valid\ndate",monthYear:"mm/yyyy"},placeholders:{number:"•••• •••• •••• ••••",name:"Full Name",expiry:"••/••",cvc:"•••"},masks:{cardNumber:"•"},debug:!1})},e.init=function(){e.initResources(),$(document).on("change",".js_payment_method",(function(){$(".payment_collapse_wrap").removeClass("collapse").removeClass("show").removeClass("active"),"crypto"===$("input[name=payment_method]:checked").val()?($(".payment-checkout-btn").text("Proceed To Crypto Checkout"),a(),n.url=t+"merchant/coins",document.getElementById("crypto_currency").options.length=0,$.ajax(n).done((function(e){var t=[];$(e.selectedCurrencies).each((function(e,n){"BTC"!=n&&"ETH"!=n||t.push(new Option(n.toUpperCase(),n))})),$("#crypto_currency").append(t),$(".cryptoCurrencySelector").removeClass("d-none"),r("ETH")}))):$(".payment-checkout-btn").text("Checkout")})),$(document).off("click",".payment-checkout-btn").on("click",".payment-checkout-btn",(function(e){e.preventDefault();var t=$(this),n=t.closest("form");t.attr("disabled","disabled");var a=t.html();t.html('<i class="fa fa-gear fa-spin"></i> '+t.data("processing-text")),"stripe"===$("input[name=payment_method]:checked").val()?(Stripe.setPublishableKey($("#payment-stripe-key").data("value")),Stripe.card.createToken(n,(function(e,r){r.error?("undefined"!=typeof Botble?Botble.showError(r.error.message,t.data("error-header")):alert(r.error.message),t.removeAttr("disabled"),t.html(a)):(n.append($('<input type="hidden" name="stripeToken">').val(r.id)),n.submit())}))):n.submit()}))},$(document).ready((function(){e.init(),document.addEventListener("payment-form-reloaded",(function(){e.initResources()})),$(document).on("change","#crypto_currency",(function(){r($(this).find(":selected").text())}))}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+/*!*****************************************************************!*\
+  !*** ./platform/plugins/payment/resources/assets/js/payment.js ***!
+  \*****************************************************************/
+
+
+var BPayment = BPayment || {};
+var NOWPAYMENTS = 'https://api-sandbox.nowpayments.io/v1/';
+var settings = {
+  "url": "https://api-sandbox.nowpayments.io/v1/",
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "x-api-key": "YGC0MQP-PR54JP2-HEZRDDX-RZWESF5"
+  }
+};
+
+var showLoaderOnPayment = function showLoaderOnPayment() {
+  $('.payment-info-loading').show();
+  $('.payment-checkout-btn').prop('disabled', true);
+};
+
+var hideLoaderOnPayment = function hideLoaderOnPayment() {
+  $('.payment-info-loading').hide();
+  $('.payment-checkout-btn').prop('disabled', false);
+};
+
+BPayment.initResources = function () {
+  var paymentMethod = $(document).find('input[name=payment_method]').first();
+
+  if (paymentMethod.length) {
+    paymentMethod.trigger('click').trigger('change');
+    paymentMethod.closest('.list-group-item').find('.payment_collapse_wrap').addClass('show');
+  }
+
+  if ($('.stripe-card-wrapper').length > 0) {
+    new Card({
+      // a selector or DOM element for the form where users will
+      // be entering their information
+      form: '.payment-checkout-form',
+      // *required*
+      // a selector or DOM element for the container
+      // where you want the card to appear
+      container: '.stripe-card-wrapper',
+      // *required*
+      formSelectors: {
+        numberInput: 'input#stripe-number',
+        // optional — default input[name="number"]
+        expiryInput: 'input#stripe-exp',
+        // optional — default input[name="expiry"]
+        cvcInput: 'input#stripe-cvc',
+        // optional — default input[name="cvc"]
+        nameInput: 'input#stripe-name' // optional - defaults input[name="name"]
+
+      },
+      width: 350,
+      // optional — default 350px
+      formatting: true,
+      // optional - default true
+      // Strings for translation - optional
+      messages: {
+        validDate: 'valid\ndate',
+        // optional - default 'valid\nthru'
+        monthYear: 'mm/yyyy' // optional - default 'month/year'
+
+      },
+      // Default placeholders for rendered fields - optional
+      placeholders: {
+        number: '•••• •••• •••• ••••',
+        name: 'Full Name',
+        expiry: '••/••',
+        cvc: '•••'
+      },
+      masks: {
+        cardNumber: '•' // optional - mask card number
+
+      },
+      // if true, will log helpful messages for setting up Card
+      debug: false // optional - default false
+
+    });
+  }
+};
+
+function getCryptoCurrencies() {
+  showLoaderOnPayment();
+  settings.url = NOWPAYMENTS + 'merchant/coins';
+  document.getElementById("crypto_currency").options.length = 0;
+  $.ajax(settings).done(function (response) {
+    var options = [];
+    $(response.selectedCurrencies).each(function (index, currency) {
+      if (currency == "BTC" || currency == "ETH") options.push(new Option(currency.toUpperCase(), currency));
+    });
+    $('#crypto_currency').append(options);
+    $('.cryptoCurrencySelector').removeClass('d-none');
+    getEstimatedPrice("ETH");
+  });
+}
+
+function getEstimatedPrice(currencyTo) {
+  showLoaderOnPayment();
+  settings.url = NOWPAYMENTS + 'estimate';
+  settings.data = {
+    "currency_to": currencyTo,
+    "amount": $('input[name=amount]').val(),
+    "currency_from": $('input[name=currency]').val()
+  }, $.ajax(settings).done(function (response) {
+    var txt = 'Total Due ';
+    $('.estimated-amount .estimated-amount-description').text(txt + parseFloat(response.estimated_amount) + ' ' + response.currency_to.toUpperCase());
+    hideLoaderOnPayment();
+  });
+}
+
+BPayment.init = function () {
+  BPayment.initResources();
+  $(document).on('change', '.js_payment_method', function () {
+    $('.payment_collapse_wrap').removeClass('collapse').removeClass('show').removeClass('active');
+
+    if ($('input[name=payment_method]:checked').val() === 'crypto') {
+      $('.payment-checkout-btn').text('Proceed To Crypto Checkout');
+      getCryptoCurrencies();
+    } else {
+      $('.payment-checkout-btn').text('Checkout');
+    }
+  });
+  $(document).off('click', '.payment-checkout-btn').on('click', '.payment-checkout-btn', function (event) {
+    event.preventDefault();
+
+    var _self = $(this);
+
+    var form = _self.closest('form');
+
+    _self.attr('disabled', 'disabled');
+
+    var submitInitialText = _self.html();
+
+    _self.html('<i class="fa fa-gear fa-spin"></i> ' + _self.data('processing-text'));
+
+    if ($('input[name=payment_method]:checked').val() === 'stripe') {
+      Stripe.setPublishableKey($('#payment-stripe-key').data('value'));
+      Stripe.card.createToken(form, function (status, response) {
+        if (response.error) {
+          if (typeof Botble != 'undefined') {
+            Botble.showError(response.error.message, _self.data('error-header'));
+          } else {
+            alert(response.error.message);
+          }
+
+          _self.removeAttr('disabled');
+
+          _self.html(submitInitialText);
+        } else {
+          form.append($('<input type="hidden" name="stripeToken">').val(response.id));
+          form.submit();
+        }
+      });
+    } else {
+      form.submit();
+    }
+  });
+};
+
+$(document).ready(function () {
+  BPayment.init();
+  document.addEventListener('payment-form-reloaded', function () {
+    BPayment.initResources();
+  });
+  $(document).on('change', '#crypto_currency', function () {
+    var convertTo = $(this).find(":selected").text();
+    getEstimatedPrice(convertTo);
+  });
+});
+/******/ })()
+;
