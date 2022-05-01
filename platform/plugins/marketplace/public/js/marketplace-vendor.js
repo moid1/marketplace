@@ -1,1 +1,65 @@
-(()=>{function e(e,o){for(var n=0;n<o.length;n++){var r=o[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var o=function(){function o(){!function(e,o){if(!(e instanceof o))throw new TypeError("Cannot call a class as a function")}(this,o)}var n,r;return n=o,(r=[{key:"init",value:function(){$(document).on("click",".approve-vendor-for-selling-button",(function(e){e.preventDefault(),$("#confirm-approve-vendor-for-selling-button").data("action",$(e.currentTarget).prop("href")),$("#approve-vendor-for-selling-modal").modal("show")})),$(document).on("click","#confirm-approve-vendor-for-selling-button",(function(e){e.preventDefault();var o=$(e.currentTarget);o.addClass("button-loading"),$.ajax({type:"POST",cache:!1,url:o.data("action"),success:function(e){e.error?Botble.showError(e.message):(Botble.showSuccess(e.message),window.location.href=route("marketplace.unverified-vendors.index")),o.removeClass("button-loading"),o.closest(".modal").modal("hide")},error:function(e){Botble.handleError(e),o.removeClass("button-loading")}})}))}}])&&e(n.prototype,r),Object.defineProperty(n,"prototype",{writable:!1}),o}();$(document).ready((function(){(new o).init()}))})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!********************************************************************************!*\
+  !*** ./platform/plugins/marketplace/resources/assets/js/marketplace-vendor.js ***!
+  \********************************************************************************/
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var MarketplaceVendorManagement = /*#__PURE__*/function () {
+  function MarketplaceVendorManagement() {
+    _classCallCheck(this, MarketplaceVendorManagement);
+  }
+
+  _createClass(MarketplaceVendorManagement, [{
+    key: "init",
+    value: function init() {
+      $(document).on('click', '.approve-vendor-for-selling-button', function (event) {
+        event.preventDefault();
+        $('#confirm-approve-vendor-for-selling-button').data('action', $(event.currentTarget).prop('href'));
+        $('#approve-vendor-for-selling-modal').modal('show');
+      });
+      $(document).on('click', '#confirm-approve-vendor-for-selling-button', function (event) {
+        event.preventDefault();
+
+        var _self = $(event.currentTarget);
+
+        _self.addClass('button-loading');
+
+        $.ajax({
+          type: 'POST',
+          cache: false,
+          url: _self.data('action'),
+          success: function success(res) {
+            if (!res.error) {
+              Botble.showSuccess(res.message);
+              window.location.href = route('marketplace.unverified-vendors.index');
+            } else {
+              Botble.showError(res.message);
+            }
+
+            _self.removeClass('button-loading');
+
+            _self.closest('.modal').modal('hide');
+          },
+          error: function error(res) {
+            Botble.handleError(res);
+
+            _self.removeClass('button-loading');
+          }
+        });
+      });
+    }
+  }]);
+
+  return MarketplaceVendorManagement;
+}();
+
+$(document).ready(function () {
+  new MarketplaceVendorManagement().init();
+});
+/******/ })()
+;
