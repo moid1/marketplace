@@ -107,8 +107,11 @@ function getEstimatedPrice(currencyTo) {
     "amount": $('input[name=amount]').val(),
     "currency_from": $('input[name=currency]').val()
   }, $.ajax(settings).done(function (response) {
-    var txt = 'Total Due ';
+    var txt = 'Crypto Total ';
     $('.estimated-amount .estimated-amount-description').text(txt + parseFloat(response.estimated_amount) + ' ' + response.currency_to.toUpperCase());
+    $('.crypto-payment-row').removeClass('d-none');
+    $('#total-crypto-text').text(parseFloat(response.estimated_amount) + ' ' + response.currency_to.toUpperCase());
+    $('input[name=crypto_payment]').val(response.estimated_amount + ' ' + response.currency_to.toUpperCase());
     hideLoaderOnPayment();
   });
 }
