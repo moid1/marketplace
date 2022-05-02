@@ -15,6 +15,12 @@
     @if (Arr::get($bankInfo, 'paypal_id'))
         <p>{{ __('PayPal ID') }}: <strong>{{ Arr::get($bankInfo, 'paypal_id') }}</strong></p>
     @endif
+    @if (Arr::get($bankInfo, 'crypto_wallet'))
+        <p>{{ __('Crypto Wallet') }}: <strong>{{ Arr::get($bankInfo, 'crypto_wallet') }}</strong></p>
+    @endif
+    @if (Arr::get($bankInfo, 'crypto_currency'))
+        <p>{{ __('Crypto Currency') }}: <strong>{{ Arr::get($bankInfo, 'crypto_currency') }}</strong></p>
+    @endif
     @if (Arr::get($bankInfo, 'upi_id'))
         <p>{{ __('UPI ID') }}: <strong>{{ Arr::get($bankInfo, 'upi_id') }}</strong></p>
     @endif
