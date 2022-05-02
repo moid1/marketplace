@@ -57,6 +57,31 @@
             {!! Form::error('bank_info[paypal_id]', $errors) !!}
 
             <div class="form-group">
+                <label for="bank_info_cryto_wallet">{{ __('Crypto Wallet Address') }}:</label>
+                <input id="bank_info_crypto_wallet"
+                    type="text"
+                    class="form-control"
+                    placeholder="{{ __('Wallet Address') }}"
+                    name="bank_info[crypto_wallet]"
+                    value="{{ Arr::get($model->bank_info, 'crypto_wallet') }}">
+            </div>
+            {!! Form::error('bank_info[crypto_wallet]', $errors) !!}
+
+            <div class="form-group">
+                <label for="bank_info_cryto_currency">{{ __('Crypto Currency') }}:</label>
+                <select id="bank_info_crypto_currency"
+                    class="form-control"
+                    placeholder="{{ __('Select Crypto Currency') }}"
+                    name="bank_info[crypto_currency]"
+                    value="{{ Arr::get($model->bank_info, 'crypto_currency') }}">
+                    <option value="BTC" {{ Arr::get($model->bank_info, 'crypto_currency') == 'BTC' ? 'selected' : '' }}>BTC</option>
+                    <option value="ETH" {{ Arr::get($model->bank_info, 'crypto_currency') == 'ETH' ? 'selected' : '' }}>ETH</option>
+                    <option value="USDT" {{ Arr::get($model->bank_info, 'crypto_currency') == 'USDT' ? 'selected' : '' }}>USDT</option>
+                </select>
+            </div>
+            {!! Form::error('bank_info[crypto_currency]', $errors) !!}
+
+            <div class="form-group">
                 <label for="bank_info_upi_id">{{ __('UPI ID') }}:</label>
                 <input id="bank_info_upi_id"
                     type="text"

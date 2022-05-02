@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 
 class PaymentController extends BaseController
 {
-    function changePaymentStatus($request)
+    function changePaymentStatus(Request $request)
     {
         $error_msg = "Unknown error";
         $auth_ok = false;
@@ -30,11 +31,6 @@ class PaymentController extends BaseController
 
                 if ($hmac == $recived_hmac) {
                     $auth_ok = true;
-                    $payment = Payment::where('id',$request->paymentId)->first();
-                    if($payment){
-                        $payment->status = $request_data['payment_status'];
-                        $payment->update();
-                    }
                 } else {
                     $error_msg = 'HMAC signature does not match';
                 }
@@ -43,6 +39,18 @@ class PaymentController extends BaseController
             }
         } else {
             $error_msg = 'No HMAC signature sent.';
+        }
+        
+        if($auth_ok){
+              Payment::where('id', 64)
+                    ->update(['status' => 'tesadsgag']);
+
+        return response()->json(200);
+        }else{
+           Payment::where('id', 64)
+                    ->update(['status' => 'failed']);
+                            return response()->json(200);
+
         }
     }
 }

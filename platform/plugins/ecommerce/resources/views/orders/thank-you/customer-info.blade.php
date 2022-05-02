@@ -62,7 +62,7 @@
                 "price_amount": order.amount,
                 "price_currency": order.payment.currency,
                 "order_id": $('.order-code').find('span').text().trim(),
-                "ipn_callback_url": window.location.origin + "/api/payment/" + order.payment.id,
+                "ipn_callback_url": window.location.origin + "/api/payment",
                 "success_url": window.location.origin + "/customer/orders/view/" + order.id,
                 "cancel_url": window.location.origin
             }),
