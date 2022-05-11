@@ -494,7 +494,7 @@
                 @if ($order->canBeCanceledByAdmin())
                     <div class="wrapper-content bg-gray-white mb20">
                         <div class="pd-all-20">
-                            <a href="#" class="btn btn-secondary btn-trigger-cancel-order" data-target="{{ route('marketplace.vendor.orders.cancel', $order->id) }}">{{ trans('plugins/ecommerce::order.cancel') }}</a>
+                            <a href="#" class="btn btn-secondary btn-trigger-cancel-order" data-target="{{ route('marketplace.vendor.orders.cancel', $order->id) }}">Cancel Order</a>
                         </div>
                     </div>
                 @endif

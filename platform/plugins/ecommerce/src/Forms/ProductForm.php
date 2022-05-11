@@ -114,7 +114,7 @@ class ProductForm extends FormAbstract
             ->addMetaBoxes([
                 'with_related' => [
                     'title'    => null,
-                    'content'  => '<div class="wrap-relation-product" data-target="' . route('products.get-relations-boxes',
+                    'content'  => '<div class="wrap-relation-product d-none" data-target="' . route('products.get-relations-boxes',
                             $productId ?: 0) . '"></div>',
                     'wrap'     => false,
                     'priority' => 9999,

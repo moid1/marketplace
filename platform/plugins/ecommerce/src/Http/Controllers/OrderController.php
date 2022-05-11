@@ -246,7 +246,7 @@ class OrderController extends BaseController
                 'amount'          => $order->amount,
                 'currency'        => cms_currency()->getDefaultCurrency()->title,
                 'payment_channel' => $request->input('payment_method'),
-                'status'          => $request->input('payment_status', PaymentStatusEnum::PENDING),
+                'status'          => $request->input('payment_status', PaymentStatusEnum::COMPLETED()),
                 'payment_type'    => 'confirm',
                 'order_id'        => $order->id,
                 'charge_id'       => Str::upper(Str::random(10)),

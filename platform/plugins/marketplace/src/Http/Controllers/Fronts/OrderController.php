@@ -350,7 +350,7 @@ class OrderController extends BaseController
     {
         $shipment = $shipmentRepository->findOrFail($id);
 
-        $shipmentRepository->createOrUpdate(['status' => $request->input('status')], compact('id'));
+        $shipmentRepository->createOrUpdate(['status' => $request->input('status'),'tracking_id' => $request->input('tracking_id'),'shipping_company_name' => $request->input('shipping_company_name')], compact('id'));
 
         $shipmentHistoryRepository->createOrUpdate([
             'action'      => 'update_status',

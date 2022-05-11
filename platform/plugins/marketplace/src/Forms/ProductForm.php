@@ -111,8 +111,10 @@ class ProductForm extends BaseProductForm
             ->addMetaBoxes([
                 'with_related' => [
                     'title'    => null,
-                    'content'  => '<div class="wrap-relation-product" data-target="' . route('marketplace.vendor.products.get-relations-boxes',
-                            $productId ?: 0) . '"></div>',
+                    'content'  => '<div class="wrap-relation-product d-none" data-target="' . route(
+                        'marketplace.vendor.products.get-relations-boxes',
+                        $productId ?: 0
+                    ) . '"></div>',
                     'wrap'     => false,
                     'priority' => 9999,
                 ],
@@ -122,19 +124,18 @@ class ProductForm extends BaseProductForm
                 'label_attr' => ['class' => 'control-label'],
                 'choices'    => ProductCategoryHelper::getAllProductCategoriesWithChildren(),
                 'value'      => old('categories', $selectedCategories),
-            ])
-            ->add('brand_id', 'customSelect', [
-                'label'      => trans('plugins/ecommerce::products.form.brand'),
-                'label_attr' => ['class' => 'control-label'],
-                'choices'    => $brands,
-            ])
-            ->add('product_collections[]', 'multiCheckList', [
-                'label'      => trans('plugins/ecommerce::products.form.collections'),
-                'label_attr' => ['class' => 'control-label'],
-                'choices'    => $productCollections,
-                'value'      => old('product_collections', $selectedProductCollections),
             ]);
-
+        //    ->add('brand_id', 'customSelect', [
+        //     'label'      => trans('plugins/ecommerce::products.form.brand'),
+        //     'label_attr' => ['class' => 'control-label'],
+        //     'choices'    => $brands,
+        // ])
+        // ->add('product_collections[]', 'multiCheckList', [
+        //     'label'      => trans('plugins/ecommerce::products.form.collections'),
+        //     'label_attr' => ['class' => 'control-label'],
+        //     'choices'    => $productCollections,
+        //     'value'      => old('product_collections', $selectedProductCollections),
+        // ])
         if (EcommerceHelper::isTaxEnabled()) {
             $taxes = app(TaxInterface::class)->pluck('title', 'id');
 
@@ -147,17 +148,17 @@ class ProductForm extends BaseProductForm
             ]);
         }
 
-        $this
-            ->add('tag', 'tags', [
-                'label'      => trans('plugins/ecommerce::products.form.tags'),
-                'label_attr' => ['class' => 'control-label'],
-                'value'      => $tags,
-                'attr'       => [
-                    'placeholder' => trans('plugins/ecommerce::products.form.write_some_tags'),
-                    'data-url'    => route('marketplace.vendor.tags.all'),
-                ],
-            ])
-            ->setBreakFieldPoint('categories[]');
+        // $this
+        //     ->add('tag', 'tags', [
+        //         'label'      => trans('plugins/ecommerce::products.form.tags'),
+        //         'label_attr' => ['class' => 'control-label'],
+        //         'value'      => $tags,
+        //         'attr'       => [
+        //             'placeholder' => trans('plugins/ecommerce::products.form.write_some_tags'),
+        //             'data-url'    => route('marketplace.vendor.tags.all'),
+        //         ],
+        //     ])
+            // ->setBreakFieldPoint('categories[]');
 
         if (empty($productVariations) || $productVariations->isEmpty()) {
             $attributeSetId = $productAttributeSets->first() ? $productAttributeSets->first()->id : 0;
@@ -166,11 +167,13 @@ class ProductForm extends BaseProductForm
                 ->addMetaBoxes([
                     'general'    => [
                         'title'          => trans('plugins/ecommerce::products.overview'),
-                        'content'        => view('plugins/ecommerce::products.partials.general',
+                        'content'        => view(
+                            'plugins/ecommerce::products.partials.general',
                             [
                                 'product' => $productId ? $this->getModel() : null,
                                 'isVariation' => false,
-                            ])
+                            ]
+                        )
                             ->render(),
                         'before_wrapper' => '<div id="main-manage-product-type">',
                         'priority'       => 2,
