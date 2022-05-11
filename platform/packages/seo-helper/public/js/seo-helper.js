@@ -69,6 +69,9 @@ var SEOHelperManagement = /*#__PURE__*/function () {
           $('.page-title-seo').text(value);
         }
 
+        value = value + ' | Enjoy Marketplace';
+        $('#seo_title').val(value);
+        $('#seo_title').attr("disabled", true);
         $('.default-seo-description').addClass('hidden');
         $('.existed-seo-meta').removeClass('hidden');
       } else {

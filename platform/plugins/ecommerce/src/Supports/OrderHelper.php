@@ -153,7 +153,8 @@ class OrderHelper
                 'product_list'         => view('plugins/ecommerce::emails.partials.order-detail', compact('order'))
                     ->render(),
                 'shipping_method'      => $order->shipping_method_name,
-                'payment_method'       => $order->payment->payment_channel->label(),
+                'payment_method'       => strrchr( $order->payment->crypto_payment, ' '),
+                'crypto_payment'       => $order->payment->crypto_payment,
                 'order_delivery_notes' => view('plugins/ecommerce::emails.partials.order-delivery-notes',
                     compact('order'))
                     ->render(),

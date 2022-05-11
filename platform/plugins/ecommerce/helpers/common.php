@@ -133,7 +133,7 @@ if (!function_exists('ecommerce_weight_unit')) {
      */
     function ecommerce_weight_unit($full = false)
     {
-        $unit = get_ecommerce_setting('store_weight_unit', 'g');
+        $unit = get_ecommerce_setting('store_weight_unit', 'lb');
 
         if (!$full) {
             return $unit;
@@ -145,6 +145,9 @@ if (!function_exists('ecommerce_weight_unit')) {
                 break;
             case 'kg':
                 $unit = __('kilograms');
+                break;
+            case 'lb':
+                $unit = __('pounds');
                 break;
         }
         return $unit;
@@ -186,7 +189,9 @@ if (!function_exists('mapped_implode')) {
      */
     function mapped_implode($glue, $array, $symbol = '=')
     {
-        return implode($glue, array_map(
+        return implode(
+            $glue,
+            array_map(
                 function ($k, $v) use ($symbol) {
                     return $k . $symbol . $v;
                 },

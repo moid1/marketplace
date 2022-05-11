@@ -18,6 +18,9 @@
 <h3>Payment method</h3>
 <p>{{ payment_method }}</p>
 
+<h3>Crypto Amount</h3>
+<p>{{ crypto_amount }}</p>
+
 <br />
 
 <p>If you have any question, please contact us via <a href="mailto:{{ site_admin_email }}">{{ site_admin_email }}</a></p>
