@@ -17,7 +17,7 @@ class ProductRequest extends Request
     public function rules()
     {
         return [
-            'name'       => 'required|max:120',
+            'name'       => 'required',
             'price'      => 'numeric|nullable|min:0|max:100000000000',
             'sale_price' => 'numeric|nullable|min:0|max:100000000000',
             'start_date' => 'date|nullable|required_if:sale_type,1',

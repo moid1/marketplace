@@ -17,7 +17,7 @@ class UpdateShippingStatusRequest extends Request
     public function rules()
     {
         return [
-            'status' => Rule::in([ShippingStatusEnum::ARRANGE_SHIPMENT, ShippingStatusEnum::READY_TO_BE_SHIPPED_OUT]),
+            'status' => Rule::in([ShippingStatusEnum::ARRANGE_SHIPMENT, ShippingStatusEnum::READY_TO_BE_SHIPPED_OUT, ShippingStatusEnum::DELIVERED]),
         ];
     }
 }
