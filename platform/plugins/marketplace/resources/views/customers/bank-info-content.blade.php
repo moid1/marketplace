@@ -1,7 +1,7 @@
 <div class="tab-pane" id="tab_bank_info">
     <div class="form-group">
         <div class="ps-form__content">
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="bank_info_name">{{ __('Bank Name') }}:</label>
                 <input id="bank_info_name"
                     type="text"
@@ -54,7 +54,7 @@
                     name="bank_info[paypal_id]"
                     value="{{ Arr::get($model->bank_info, 'paypal_id') }}">
             </div>
-            {!! Form::error('bank_info[paypal_id]', $errors) !!}
+            {!! Form::error('bank_info[paypal_id]', $errors) !!} --}}
 
             <div class="form-group">
                 <label for="bank_info_cryto_wallet">{{ __('Crypto Wallet Address') }}:</label>
@@ -81,7 +81,7 @@
             </div>
             {!! Form::error('bank_info[crypto_currency]', $errors) !!}
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="bank_info_upi_id">{{ __('UPI ID') }}:</label>
                 <input id="bank_info_upi_id"
                     type="text"
@@ -101,7 +101,7 @@
                     name="bank_info[description]"
                     rows="4">{{ Arr::get($model->bank_info, 'description') }}</textarea>
             </div>
-            {!! Form::error('bank_info[description]', $errors) !!}
+            {!! Form::error('bank_info[description]', $errors) !!} --}}
         </div>
     </div>
 </div>
