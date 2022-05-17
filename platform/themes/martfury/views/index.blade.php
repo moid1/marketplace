@@ -13,7 +13,7 @@
             <div>- Content:</div>
             <div style="border: 1px solid rgba(0,0,0,.1); padding: 10px; margin-top: 10px;">
                 <div>[simple-slider key="home-slider"][/simple-slider]</div>
-                <div>[site-features icon1="icon-rocket" title1="Free Delivery" subtitle1="For all orders over $99" icon2="icon-sync" title2="90 Days Return" subtitle2="If goods have problems" icon3="icon-credit-card" title3="Secure Payment" subtitle3="100% secure payment" icon4="icon-bubbles" title4="24/7 Support" subtitle4="Dedicated support" icon5="icon-gift" title5="Gift Service" subtitle5="Support gift service"][/site-features]</div>
+                <div>[site-features icon1="icon-rocket" title1="Free Delivery" subtitle1="For all orders" icon2="icon-sync" title2="90 Days Return" subtitle2="If goods have problems" icon3="icon-credit-card" title3="Secure Payment" subtitle3="100% secure payment" icon4="icon-bubbles" title4="24/7 Support" subtitle4="Dedicated support" icon5="icon-gift" title5="Gift Service" subtitle5="Support gift service"][/site-features]</div>
                 <div>[flash-sale title="Deal of the day" flash_sale_id="1"][/flash-sale]</div>
                 <div>[featured-product-categories title="Top Categories"][/featured-product-categories]</div>
                 <div>[theme-ads key_1="IZ6WU8KUALYD" key_2="ILSFJVYFGCPZ" key_3="ZDOZUZZIU7FT"][/theme-ads]</div>

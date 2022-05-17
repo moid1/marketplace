@@ -6,7 +6,7 @@ var __webpack_exports__ = {};
 $(document).ready(function () {
   if ($.fn.datepicker) {
     $('#date_of_birth').datepicker({
-      format: 'yyyy-mm-dd',
+      format: 'mm-dd-yyyy',
       orientation: 'bottom'
     });
   }

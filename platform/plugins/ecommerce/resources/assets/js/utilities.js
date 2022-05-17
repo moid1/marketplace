@@ -1,7 +1,7 @@
 $(document).ready(() => {
     if ($.fn.datepicker) {
         $('#date_of_birth').datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'mm-dd-yyyy',
             orientation: 'bottom'
         });
     }
