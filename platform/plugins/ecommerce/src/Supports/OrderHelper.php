@@ -447,7 +447,7 @@ class OrderHelper
             [
                 'image'      => RvMedia::getImageUrl($image, 'thumb', false, RvMedia::getDefaultImage()),
                 'attributes' => $product->is_variation ? $product->variation_attributes : '',
-                'taxRate'    => 8,
+                'taxRate'    => $parentProduct->tax->percentage,
                 'extras'     => $request->input('extras', []),
             ]
         );
