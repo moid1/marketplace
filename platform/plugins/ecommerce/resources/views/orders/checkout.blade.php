@@ -37,6 +37,8 @@
                                     <p class="price-text sub-total-text text-end"> {{ format_price(Cart::instance('cart')->rawSubTotal()) }} </p>
                                 </div>
                             </div>
+
+
                             @if (session('applied_coupon_code'))
                                 <div class="row coupon-information">
                                     <div class="col-6">

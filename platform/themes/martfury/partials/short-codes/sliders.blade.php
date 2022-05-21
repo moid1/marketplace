@@ -14,7 +14,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="ps-section__right">
+                <div class="ps-section__right" style="display: grid;align-items:center">
                     @if (count($ads))
                         @foreach ($ads as $key)
                             <div class="ps-collection">
