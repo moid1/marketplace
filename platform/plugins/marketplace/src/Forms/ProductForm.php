@@ -136,17 +136,17 @@ class ProductForm extends BaseProductForm
         //     'choices'    => $productCollections,
         //     'value'      => old('product_collections', $selectedProductCollections),
         // ])
-        if (EcommerceHelper::isTaxEnabled()) {
-            $taxes = app(TaxInterface::class)->pluck('title', 'id');
+        // if (EcommerceHelper::isTaxEnabled()) {
+        //     $taxes = app(TaxInterface::class)->pluck('title', 'id');
 
-            $taxes = [0 => trans('plugins/ecommerce::tax.select_tax')] + $taxes;
+        //     $taxes = [0 => trans('plugins/ecommerce::tax.select_tax')] + $taxes;
 
-            $this->add('tax_id', 'customSelect', [
-                'label'      => trans('plugins/ecommerce::products.form.tax'),
-                'label_attr' => ['class' => 'control-label'],
-                'choices'    => $taxes,
-            ]);
-        }
+        //     $this->add('tax_id', 'customSelect', [
+        //         'label'      => trans('plugins/ecommerce::products.form.tax'),
+        //         'label_attr' => ['class' => 'control-label'],
+        //         'choices'    => $taxes,
+        //     ]);
+        // }
 
         // $this
         //     ->add('tag', 'tags', [
