@@ -10,7 +10,7 @@ class SEOHelperManagement {
             }
             value = value + ' | Enjoy Marketplace'
             $('#seo_title').val(value);
-            $('#seo_title').attr("disabled",true);
+            $('#seo_title').attr("disabled", true);
             $('.default-seo-description').addClass('hidden');
             $('.existed-seo-meta').removeClass('hidden');
         } else {
@@ -29,6 +29,12 @@ class SEOHelperManagement {
 
     handleMetaBox() {
         let permalink = this.$document.find('#sample-permalink a');
+        let seoTitle = this.$document.find('#seo_title');
+        let productName = this.$document.find('#name');
+        if (productName.length && productName.val()) {
+            seoTitle.val(productName.val() + ' | ' + 'Enjoy Marketplace');
+            $('#seo_title').prop('readonly', true);
+        }
 
         if (permalink.length) {
             $('.page-url-seo p').text(permalink.prop('href').replace('?preview=true', ''));

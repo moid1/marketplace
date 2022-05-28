@@ -20,6 +20,13 @@ var SEOHelperManagement = /*#__PURE__*/function () {
     key: "handleMetaBox",
     value: function handleMetaBox() {
       var permalink = this.$document.find('#sample-permalink a');
+      var seoTitle = this.$document.find('#seo_title');
+      var productName = this.$document.find('#name');
+
+      if (productName.length && productName.val()) {
+        seoTitle.val(productName.val() + ' | ' + 'Enjoy Marketplace');
+        $('#seo_title').prop('readonly', true);
+      }
 
       if (permalink.length) {
         $('.page-url-seo p').text(permalink.prop('href').replace('?preview=true', ''));
