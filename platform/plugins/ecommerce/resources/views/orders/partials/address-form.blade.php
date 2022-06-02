@@ -91,6 +91,13 @@
             </div>
         </div>
 
+        <div class="col-12">
+            <div class="form-group mb-3 @if ($errors->has('address.address')) has-error @endif">
+                <input id="address_address" type="text" class="form-control address-control-item address-control-item-required checkout-input" placeholder="{{ __('Address') }}" name="address[address]" value="{{ old('address.address', Arr::get($sessionCheckoutData, 'address')) }}">
+                {!! Form::error('address.address', $errors) !!}
+            </div>
+        </div>
+
         <div class="row">
             @if (EcommerceHelper::isUsingInMultipleCountries())
                 <div class="col-12">
@@ -98,7 +105,8 @@
                         <div class="select--arrow">
                             <select name="address[country]" class="form-control address-control-item address-control-item-required" id="address_country" data-type="country">
                                 @foreach(EcommerceHelper::getAvailableCountries() as $countryCode => $countryName)
-                                    <option value="{{ $countryCode }}" @if (old('address.country', Arr::get($sessionCheckoutData, 'country')) == $countryCode) selected @endif>{{ $countryName }}</option>
+                                {{-- old('address.country', Arr::get($sessionCheckoutData, 'country')) || / --}}
+                                    <option value="{{ $countryCode }}" @if ('US'  == $countryCode) selected @endif>{{ $countryName }}</option>
                                 @endforeach
                             </select>
                             <i class="fas fa-angle-down"></i>
@@ -152,12 +160,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
-                <div class="form-group mb-3 @if ($errors->has('address.address')) has-error @endif">
-                    <input id="address_address" type="text" class="form-control address-control-item address-control-item-required checkout-input" placeholder="{{ __('Address') }}" name="address[address]" value="{{ old('address.address', Arr::get($sessionCheckoutData, 'address')) }}">
-                    {!! Form::error('address.address', $errors) !!}
-                </div>
-            </div>
+          
 
             @if (EcommerceHelper::isZipCodeEnabled())
                 <div class="col-12">
