@@ -41,13 +41,13 @@
 
 </div>
 @if ($order->payment->payment_channel == 'crypto')
-    <div class="w-100 text-center">
-        <button class="btn btn-success make-crypto-invoice"> Make Payment </button>
+    <div class="col-md-6 checkout-button-group">
+        <button class="btn payment-checkout-btn payment-checkout-btn-step float-end"> Make Payment </button>
     </div>
 @endif
 
 <script>
-    $(document).off('click', '.make-crypto-invoice').on('click', '.make-crypto-invoice', function(event) {
+    $(document).off('click', '.payment-checkout-btn-step').on('click', '.payment-checkout-btn-step', function(event) {
         event.preventDefault();
         var order = @json($order);
         var settings = {

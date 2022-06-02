@@ -28,7 +28,7 @@
                         <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                     @endif
                 </div>
-                @if (is_plugin_active('marketplace'))
+                {{-- @if (is_plugin_active('marketplace'))
                     <div class="show-if-vendor" @if (old('is_vendor') == 0) style="display: none" @endif>
                         <div class="form-group">
                             <label for="shop-name" class="required">{{ __('Shop Name') }}</label>
@@ -72,7 +72,7 @@
                             </label>
                         </p>
                     </div>
-                @endif
+                @endif --}}
                 <div class="form-group">
                     <p>{{ __('Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.') }}</p>
                 </div>
