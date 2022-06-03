@@ -14,10 +14,12 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="ps-section__right">
+                <div class="ps-section__right d-none d-lg-block " style="align-items:center">
                     @if (count($ads))
+                    <div class="mt-4" >
+                    </div>
                         @foreach ($ads as $key)
-                            <div class="ps-collection">
+                            <div class="ps-collection" >
                                 {!! AdsManager::displayAds($key) !!}
                             </div>
                         @endforeach
