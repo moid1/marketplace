@@ -34,7 +34,7 @@
          @endif
          <div class="ps-footer__copyright">
              <p>{{ theme_option('copyright') }}</p>
-             @php $paymentMethods = array_filter(json_decode(theme_option('payment_methods', []), true)); @endphp
+             {{-- @php $paymentMethods = array_filter(json_decode(theme_option('payment_methods', []), true)); @endphp
              @if ($paymentMethods)
                  <div class="footer-payments">
                      <span class="payment-method-title">{{ __('We Using Safe Payment For') }}:</span>
@@ -52,7 +52,7 @@
                          @endif
                      </p>
                  </div>
-             @endif
+             @endif --}}
          </div>
      </div>
  </footer>
