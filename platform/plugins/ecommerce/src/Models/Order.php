@@ -159,7 +159,7 @@ class Order extends BaseModel
             return false;
         }
 
-        return in_array($this->status, [OrderStatusEnum::PENDING, OrderStatusEnum::PROCESSING]);
+        return in_array($this->status, [OrderStatusEnum::PENDING]);
     }
 
     /**

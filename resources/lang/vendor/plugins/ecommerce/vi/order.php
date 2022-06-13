@@ -25,7 +25,7 @@ return [
     'order_information' => 'Thông tin đơn hàng',
     'create' => 'Create an order',
     'cancel_error' => 'The order is delivering or completed',
-    'cancel_success' => 'You do cancel the order successful',
+    'cancel_success' => 'Order canceled successfully',
     'product_id' => 'Product ID',
     'tax_amount' => 'Tax Amount',
     'invoice_for_order' => 'Invoice for order',

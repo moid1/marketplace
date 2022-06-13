@@ -10,7 +10,7 @@ return [
     'menu' => 'Orders',
     'create' => 'Create an order',
     'cancel_error' => 'The order is delivering or completed',
-    'cancel_success' => 'You do cancel the order successful',
+    'cancel_success' => 'Order canceled successfully',
     'incomplete_order' => 'Incomplete orders',
     'order_id' => 'Order ID',
     'product_id' => 'Product ID',
