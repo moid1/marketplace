@@ -1,10 +1,10 @@
 'use strict';
 
 var BPayment = BPayment || {};
-const NOWPAYMENTS = 'https://api-nowpayments.io/v1/';
+const NOWPAYMENTS = 'https://api.sandbox.nowpayments.io/v1/';
 
 var settings = {
-    "url": "https://api-nowpayments.io/v1/",
+    "url": "https://api.sandbox.nowpayments.io/v1/",
     "method": "GET",
     "timeout": 0,
     "headers": {
