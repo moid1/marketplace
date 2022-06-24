@@ -7,9 +7,9 @@ var __webpack_exports__ = {};
 
 
 var BPayment = BPayment || {};
-var NOWPAYMENTS = 'https://api-sandbox.nowpayments.io/v1/';
+var NOWPAYMENTS = 'https://api.sandbox.nowpayments.io/v1/';
 var settings = {
-  "url": "https://api-sandbox.nowpayments.io/v1/",
+  "url": "https://api.sandbox.nowpayments.io/v1/",
   "method": "GET",
   "timeout": 0,
   "headers": {
