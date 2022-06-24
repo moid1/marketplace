@@ -51,11 +51,11 @@
         event.preventDefault();
         var order = @json($order);
         var settings = {
-            "url": "https://api-sandbox.nowpayments.io/v1/invoice",
+            "url": "https://api.nowpayments.io/v1/invoice",
             "method": "POST",
             "timeout": 0,
             "headers": {
-                "x-api-key": "AKPFF0J-500M4AE-MRH1HQP-28GXW2T",
+                "x-api-key": "7R5W2YB-8YA4WHK-GPH5ANG-Y4PCHXX",
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
