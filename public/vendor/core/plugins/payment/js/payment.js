@@ -7,13 +7,13 @@ var __webpack_exports__ = {};
 
 
 var BPayment = BPayment || {};
-var NOWPAYMENTS = 'https://api-sandbox.nowpayments.io/v1/';
+var NOWPAYMENTS = 'https://api-nowpayments.io/v1/';
 var settings = {
-  "url": "https://api-sandbox.nowpayments.io/v1/",
+  "url": "https://api-nowpayments.io/v1/",
   "method": "GET",
   "timeout": 0,
   "headers": {
-    "x-api-key": "YGC0MQP-PR54JP2-HEZRDDX-RZWESF5"
+    "x-api-key": "7R5W2YB-8YA4WHK-GPH5ANG-Y4PCHXX"
   }
 };
 
