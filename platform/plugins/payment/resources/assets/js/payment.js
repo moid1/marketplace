@@ -8,7 +8,7 @@ var settings = {
     "method": "GET",
     "timeout": 0,
     "headers": {
-        "x-api-key": "YGC0MQP-PR54JP2-HEZRDDX-RZWESF5"
+        "x-api-key": "7R5W2YB-8YA4WHK-GPH5ANG-Y4PCHXX"
     },
 };
 
